@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--<bean id="CustomerBean" class="com.spring_test.bean.CustomerCollection">-->
+    <!--<property name="lists">-->
+    <!--<list>-->
+    <!--<bean class="org.springframework.beans.factory.config.ListFactoryBean">-->
+    <!--<property name="targetListClass">-->
+    <!--<value>java.util.ArrayList</value>-->
+    <!--</property>-->
+    <!--<property name="sourceList">-->
+    <!--<list>-->
+    <!--<value>one</value>-->
+    <!--<value>2</value>-->
+    <!--<value>three</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="CustomerBean" class="com.spring_test.bean.CustomerCollection">
+        <property name="lists">
+            <util:list list-class="java.util.ArrayList">
+                <value>one</value>
+                <value>2</value>
+                <value>three</value>
+            </util:list>
+        </property>
+    </bean>
+
+</beans>
