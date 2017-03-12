@@ -1,0 +1,3 @@
+通过 @Configuration 表示config类
+在方法上用@Bean(name="")来标记
+用AnnotationConfigApplicationContext构建方法传入config类来获得ApplicationContext

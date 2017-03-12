@@ -1,0 +1,2 @@
+通过在@Configuration下添加
+@Import(类集合)来导入多个@Configuration里的配置

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       xmlns:p="http://www.springframework.org/schema/p">
+
+    <!-- 导入 properties文件-->
+    <context:property-placeholder location="classpath:conf/jdbc.properties"/>
+    或
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:conf/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- mybatis文件配置，扫描所有mapper文件 -->
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dataSource"
+          p:configLocation="classpath:conf/mybatis-config.xml"
+          p:mapperLocations="classpath:sqlmap/*.xml"/><!-- configLocation为mybatis属性 mapperLocations为所有mapper  必要-->
+
+    <!-- spring与mybatis整合配置，扫描所有dao -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="com.mybatis.mapper"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
+
+    <!--&lt;!&ndash; 对数据源进行事务管理 &ndash;&gt;-->
+    <!--<bean id="transactionManager"-->
+          <!--class="org.springframework.jdbc.datasource.DataSourceTransactionManager"-->
+          <!--p:dataSource-ref="dataSource"/>-->
+
+    <!-- 功能同上
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:sqlmap/*.xml"/>
+        <property name="configLocation" value="classpath:conf/mybatis-config.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage"
+                  value="com.mybatis.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    -->
+
+    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="${jdbc_driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc_url}"/>
+        <property name="username" value="${jdbc_username}"/>
+        <property name="password" value="${jdbc_password}"/>
+        <property name="idleConnectionTestPeriod" value="0"/>
+        <property name="idleMaxAge" value="240"/>
+        <property name="maxConnectionsPerPartition" value="30"/>
+        <property name="minConnectionsPerPartition" value="10"/>
+        <property name="partitionCount" value="1"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="statementsCacheSize" value="100"/>
+        <property name="releaseHelperThreads" value="3"/>
+    </bean>
+
+</beans>

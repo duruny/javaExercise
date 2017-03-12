@@ -1,4 +1,6 @@
 1 使用一个helper类
 2 使用策略模式传对象
-3 通过spring 配置文件里来注入
+3 通过spring 配置文件里用property来注入
+
+property标签标识的是set方式注入，还可以使用<constructor-arg>，表示构造函数注入
 即可实现
