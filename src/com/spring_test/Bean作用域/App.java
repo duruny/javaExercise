@@ -15,6 +15,7 @@ public class App
 {
     public static void main( String[] args )
     {
+
         String path = Paths.get(App.class.getPackage().getName().replace(".", "/"), "Spring-Customer.xml").toString();
         ApplicationContext context = new ClassPathXmlApplicationContext(path);
 
