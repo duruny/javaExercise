@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="netty">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/netty" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/netty" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/netty" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/netty" recursive="false" type="SOURCES" />
+  </library>
+</component>

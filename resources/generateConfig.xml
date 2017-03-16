@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration> <!--连接包的路径，不要有中文-->
-    <classPathEntry location="E:\etl测试\soft\postgresql-9.2-1003-jdbc4.jar"/>
-    <context id="etl3.0">
+    <classPathEntry location="..\db\mysql-connector-java-5.1.6-bin.jar"/>
+    <context id="batis">
 
         <commentGenerator>
             <property name="suppressAllComments" value="false" />
@@ -22,24 +22,26 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置  使用绝对路径-->
-        <javaModelGenerator targetPackage="com.mybatis.model" targetProject="src">
+        <javaModelGenerator targetPackage="com.mybatis.model" targetProject="../../src">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置  使用绝对路径-->
-        <sqlMapGenerator targetPackage="sqlmap" targetProject="resources">
+        <sqlMapGenerator targetPackage="sqlmap" targetProject="../../resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成DAO的包名和位置 使用绝对路径-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mybatis.mapper" targetProject="src">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mybatis.mapper" targetProject="../../src">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- 第一二个必填， 第一个为表名，第二个为生成的对象名-->
-        <table tableName="filter" domainObjectName="FilterTabel" enableCountByExample="false" enableSelectByExample="false"
+        <table tableName="filter" domainObjectName="FilterTable" enableCountByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"/>
     </context>
 
 </generatorConfiguration>
+
+<!--在mybatis-generator-core-1.3.2.jar目录下执行如下命令即可 java -jar mybatis-generator-core-1.3.2.jar -configfile ../../resources/generateConfig.xml -overwrite-->
