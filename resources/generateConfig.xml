@@ -13,7 +13,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:postgresql://172.16.1.224:3433/db_etl_server_test"
+                        connectionURL="jdbc:mysql://localhost:3306/test"
                         userId="root" password="">
         </jdbcConnection>
 
@@ -22,18 +22,18 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置  使用绝对路径-->
-        <javaModelGenerator targetPackage="com.mybatis.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.mybatis.model" targetProject="src">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置  使用绝对路径-->
-        <sqlMapGenerator targetPackage="sqlmap" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="sqlmap" targetProject="resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成DAO的包名和位置 使用绝对路径-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mybatis.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mybatis.mapper" targetProject="src">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
