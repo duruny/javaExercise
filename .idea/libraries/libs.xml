@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="file://E:/jar包/spring-framework-4.3.6.RELEASE/libs" />
+      <root url="file://$PROJECT_DIR$/lib/libs" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://E:/jar包/spring-framework-4.3.6.RELEASE/libs" />
+      <root url="file://$PROJECT_DIR$/lib/libs" />
     </SOURCES>
-    <jarDirectory url="file://E:/jar包/spring-framework-4.3.6.RELEASE/libs" recursive="false" />
-    <jarDirectory url="file://E:/jar包/spring-framework-4.3.6.RELEASE/libs" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/libs" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/libs" recursive="false" type="SOURCES" />
   </library>
 </component>
