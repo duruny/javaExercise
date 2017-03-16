@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class test
 {
-    public static int j = 0;
+    private static int j = 0;
 
     public static void main(String[] args)
     {
