@@ -5,15 +5,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        xmlns:p="http://www.springframework.org/schema/p">
 
+    <context:component-scan base-package="com.mybatis"/>
     <!-- 导入 properties文件-->
-    <context:property-placeholder location="classpath:conf/jdbc.properties"/>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
     <!--或-->
     <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-        <!--<property name="locations">-->
-            <!--<list>-->
-                <!--<value>classpath:conf/jdbc.properties</value>-->
-            <!--</list>-->
-        <!--</property>-->
+    <!--<property name="locations">-->
+    <!--<list>-->
+    <!--<value>classpath:conf/jdbc.properties</value>-->
+    <!--</list>-->
+    <!--</property>-->
     <!--</bean>-->
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->
@@ -30,8 +31,8 @@
 
     <!--&lt;!&ndash; 对数据源进行事务管理 &ndash;&gt;-->
     <!--<bean id="transactionManager"-->
-          <!--class="org.springframework.jdbc.datasource.DataSourceTransactionManager"-->
-          <!--p:dataSource-ref="dataSource"/>-->
+    <!--class="org.springframework.jdbc.datasource.DataSourceTransactionManager"-->
+    <!--p:dataSource-ref="dataSource"/>-->
 
     <!-- 功能同上
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -44,29 +45,35 @@
         <property name="basePackage"
                   value="com.mybatis.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-    </bean>
+    </bean>-->
 
-    <!-- 事务管理器 -->
+    <!--事务管理器-->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    -->
 
-    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
-          destroy-method="close">
-        <property name="driverClass" value="${jdbc_driverClassName}"/>
-        <property name="jdbcUrl" value="${jdbc_url}"/>
-        <property name="username" value="${jdbc_username}"/>
-        <property name="password" value="${jdbc_password}"/>
-        <property name="idleConnectionTestPeriod" value="0"/>
-        <property name="idleMaxAge" value="240"/>
-        <property name="maxConnectionsPerPartition" value="30"/>
-        <property name="minConnectionsPerPartition" value="10"/>
-        <property name="partitionCount" value="1"/>
-        <property name="acquireIncrement" value="5"/>
-        <property name="statementsCacheSize" value="100"/>
-        <property name="releaseHelperThreads" value="3"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" >
+        <!--<property name="driver" value="${db.url}"/>-->
+        <property name="Url" value="${db.url}"/>
+        <property name="Username" value="${db.username}"/>
+        <property name="Password" value="${db.password}"/>
     </bean>
+
+    <!--<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"-->
+    <!--destroy-method="close">-->
+    <!--<property name="driverClass" value="${jdbc_driverClassName}"/>-->
+    <!--<property name="jdbcUrl" value="${jdbc_url}"/>-->
+    <!--<property name="username" value="${jdbc_username}"/>-->
+    <!--<property name="password" value="${jdbc_password}"/>-->
+    <!--<property name="idleConnectionTestPeriod" value="0"/>-->
+    <!--<property name="idleMaxAge" value="240"/>-->
+    <!--<property name="maxConnectionsPerPartition" value="30"/>-->
+    <!--<property name="minConnectionsPerPartition" value="10"/>-->
+    <!--<property name="partitionCount" value="1"/>-->
+    <!--<property name="acquireIncrement" value="5"/>-->
+    <!--<property name="statementsCacheSize" value="100"/>-->
+    <!--<property name="releaseHelperThreads" value="3"/>-->
+    <!--</bean>-->
 
 </beans>
