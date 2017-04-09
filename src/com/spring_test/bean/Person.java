@@ -12,6 +12,7 @@ public class Person
 
     public String getName()
     {
+        System.out.println(name);
         return name;
     }
 
@@ -22,6 +23,7 @@ public class Person
 
     public String getAddress()
     {
+        System.out.println(address);
         return address;
     }
 
@@ -39,6 +41,11 @@ public class Person
     {
         this.age = age;
     }
+
+    public void printThrowException() {
+        throw new IllegalArgumentException();
+    }
+
 
     @Override
     public String toString()

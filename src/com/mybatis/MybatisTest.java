@@ -21,14 +21,13 @@ public class MybatisTest
     @Autowired
     private FilterTableMapper filterTableMapper;
 
-
     public void insert(ApplicationContext context)
     {
         FilterTable table = new FilterTable();
         table.setCode("dsfdf");
         table.setName("jjojk");
         table.setVri(234.4253);
-        filterTableMapper = (FilterTableMapper) context.getBean("filterTableMapper");
+        // filterTableMapper = (FilterTableMapper) context.getBean("filterTableMapper");
         filterTableMapper.insert(table);
     }
 
@@ -39,7 +38,7 @@ public class MybatisTest
         ApplicationContext context = new ClassPathXmlApplicationContext(path);
         DruidDataSource source = (DruidDataSource) context.getBean("dataSource");
         // source.init();   可省略 ，报错是mysql链接库太老？
-        MybatisTest ttttt = new MybatisTest();
+        MybatisTest ttttt = (MybatisTest) context.getBean("mybatisTest");
         ttttt.insert(context);
 
     }

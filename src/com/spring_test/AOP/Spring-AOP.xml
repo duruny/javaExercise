@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="person-aop" class="com.spring_test.bean.Person">
+        <property name="name" value="Yiibai Mook Kim"/>
+        <property name="address" value="http://www.yiibai.com"/>
+    </bean>
+
+    <bean id="personAddress" class="com.spring_test.bean.Address"/>
+
+    <!--<bean id="hijackBeforeMethodBean" class="com.spring_test.AOP.HijackBeforeMethod" />-->
+    <!--<bean id="hijackAfterMethodBean" class="com.spring_test.AOP.HijackAfterMethod" />-->
+    <!--<bean id="hijackThrowExceptionBean" class="com.spring_test.AOP.HijackThrowException" />-->
+
+    <!--<bean id="customerServiceProxy"-->
+    <!--class="org.springframework.aop.framework.ProxyFactoryBean">-->
+    <!--&lt;!&ndash;只能有一个target，只能被转为此target对象&ndash;&gt;-->
+    <!--<property name="target" ref="person-aop" />-->
+
+    <!--<property name="interceptorNames">-->
+    <!--<list>-->
+    <!--<value>hijackBeforeMethodBean</value>-->
+    <!--<value>hijackAfterMethodBean</value>-->
+    <!--<value>hijackThrowExceptionBean</value>-->
+    <!--</list>-->
+    <!--</property>-->
+
+    <!--</bean>-->
+
+    <!--另一种方式， 类似动态代理模式-->
+    <bean id="hijackAroundMethodBean" class="com.spring_test.AOP.HijackAroundMethod"/>
+
+    <!--<bean id="customerServiceProxy"-->
+          <!--class="org.springframework.aop.framework.ProxyFactoryBean">-->
+
+        <!--<property name="target" ref="person-aop"/>-->
+
+        <!--<property name="interceptorNames">-->
+            <!--<list>-->
+                <!--&lt;!&ndash;<value>hijackAroundMethodBean</value>&ndash;&gt;-->
+                <!--<value>customerAdvisor</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--这种用bean 的id替代customerServiceProxy实现同时多个类的定义-->
+    <!--<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">-->
+        <!--<property name="beanNames">-->
+            <!--<list>-->
+                <!--<value>*person*</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="interceptorNames">-->
+            <!--<list>-->
+                <!--<value>customerAdvisor</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--功能同上，自动创建代理，不用指定-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+
+    <!--同下，这是简化版-->
+    <!--<bean id="customerAdvisor"-->
+    <!--class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">-->
+    <!--<property name="mappedName" value="getName" />-->
+    <!--<property name="advice" ref="hijackAroundMethodBean" />-->
+    <!--</bean>-->
+
+    <bean id="customerAdvisor"
+          class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="customerYiibaicut"/>
+        <property name="advice" ref="hijackAroundMethodBean"/>
+    </bean>
+
+    <!--这种只会拦截指定的方法-->
+    <bean id="customerYiibaicut"
+          class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="getName"/>
+    </bean>
+
+
+    <!--下面是通过正则表达式替代具体的方法名-->
+    <!--<bean id="customerAdvisor"-->
+    <!--class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">-->
+    <!--<property name="patterns">-->
+    <!--<list>-->
+    <!--<value>.*URL.*</value>-->
+    <!--</list>-->
+    <!--</property>-->
+
+    <!--<property name="advice" ref="hijackAroundMethodBean"/>-->
+    <!--</bean>-->
+
+
+
+</beans>

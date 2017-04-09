@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--使spring的注解生效-->
+    <context:annotation-config/>
+
+    <!--使Autowired注解生效，以上一句包括此功能-->
+    <!--<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>-->
+
+    <!--Autowired注解只有在通过spring生成的bean里才有效，直接new无效-->
+
+    <!--下面两个都是Person的实例，可用@Qualifier("PersonBean1")注解来选择-->
+    <bean id="PersonBean1" class="com.spring_test.bean.Person">
+        <property name="name" value="yiibai-1"/>
+        <property name="address" value="address-1"/>
+        <property name="age" value="29"/>
+    </bean>
+
+    <bean id="PersonBean2" class="com.spring_test.bean.Person">
+        <property name="name" value="yiibai-2"/>
+        <property name="address" value="address-2"/>
+        <property name="age" value="28"/>
+    </bean>
+</beans>
